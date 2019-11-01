@@ -1,0 +1,9 @@
+# Rush Order
+Input.cart.line_items.each do |line_item|
+  product = line_item.variant.product
+  next unless product.id == 12097978371
+  subtotal_without_item = Input.cart.subtotal_price_was - line_item.line_price
+  line_item.change_line_price(subtotal_without_item * 0.2, message: "Rush Order fee is 20%")
+end
+
+Output.cart = Input.cart
